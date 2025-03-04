@@ -20,8 +20,10 @@ interface ContractContextType {
   commentHub: ethers.Contract | null;
   address: string | null;
   isConnecting: boolean;
+  isConnected: boolean;
   connectWallet: () => Promise<void>;
   disconnect: () => void;
+  addComment: (gameId: number, content: string) => Promise<void>;
 }
 
 const ContractContext = createContext<ContractContextType>({
@@ -30,13 +32,15 @@ const ContractContext = createContext<ContractContextType>({
   commentHub: null,
   address: null,
   isConnecting: false,
+  isConnected: false,
   connectWallet: async () => {},
-  disconnect: () => {}
+  disconnect: () => {},
+  addComment: async () => {}
 });
 
 const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
 const COMMENT_HUB_ADDRESS = import.meta.env.VITE_COMMENT_HUB_ADDRESS;
-const RPC_URL = "https://rpc.ankr.com/electroneum/9c33299474317767c8669d66103f672ebbbd2151b86e5079bda236401453c176";
+const RPC_URL = import.meta.env.VITE_ELECTRONEUM_RPC_URL;
 
 export function ContractProvider({ children }: { children: ReactNode }) {
   const [signer, setSigner] = useState<ethers.Signer | null>(null);
@@ -45,12 +49,19 @@ export function ContractProvider({ children }: { children: ReactNode }) {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
   const [address, setAddress] = useState<string | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
 
   const disconnect = () => {
     setSigner(null);
     setContract(null);
     setCommentHub(null);
     setAddress(null);
+    setIsConnected(false);
+  };
+
+  const addComment = async (gameId: number, content: string) => {
+    if (!commentHub || !address) return;
+    await commentHub.addComment(gameId, content);
   };
 
   const connectWallet = async () => {
@@ -61,7 +72,6 @@ export function ContractProvider({ children }: { children: ReactNode }) {
         throw new Error('Please install MetaMask to use this app');
       }
 
-      // Initialize provider with Ankr RPC URL
       const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
       const wallet = ethers.Wallet.createRandom();
       const connectedWallet = wallet.connect(provider);
@@ -83,6 +93,7 @@ export function ContractProvider({ children }: { children: ReactNode }) {
       setContract(newContract);
       setCommentHub(newCommentHub);
       setAddress(address);
+      setIsConnected(true);
 
     } catch (error) {
       console.error('Failed to connect wallet:', error);
@@ -100,8 +111,10 @@ export function ContractProvider({ children }: { children: ReactNode }) {
         commentHub,
         address,
         isConnecting,
+        isConnected,
         connectWallet,
-        disconnect
+        disconnect,
+        addComment
       }}
     >
       {children}
