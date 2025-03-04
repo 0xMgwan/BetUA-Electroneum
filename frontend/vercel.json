@@ -15,18 +15,13 @@
       "dest": "/assets/$1"
     },
     {
-      "src": "^/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
       "src": ".*",
       "dest": "/index.html"
     }
   ],
   "env": {
-    "VITE_ELECTRONEUM_RPC_URL": "@electroneum_rpc_url",
-    "VITE_BETTING_POOL_ADDRESS": "@betting_pool_address",
-    "VITE_SPECIFIC_BET_ADDRESS": "@specific_bet_address",
-    "VITE_COMMENT_HUB_ADDRESS": "@comment_hub_address"
+    "VITE_CONTRACT_ADDRESS": "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
+    "VITE_COMMENT_HUB_ADDRESS": "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c",
+    "VITE_ELECTRONEUM_RPC_URL": "https://rpc.ankr.com/electroneum/9c33299474317767c8669d66103f672ebbbd2151b86e5079bda236401453c176"
   }
 }
