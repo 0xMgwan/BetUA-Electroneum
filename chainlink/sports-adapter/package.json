@@ -1,0 +1,13 @@
+{
+  "name": "chainlink-sports-adapter",
+  "version": "1.0.0",
+  "description": "Chainlink external adapter for sports data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@chainlink/external-adapter": "^0.2.6"
+  }
+}
