@@ -1,6 +1,6 @@
-# PlayIt - Decentralized Sports Betting Platform
+# BetUA - Decentralized Betting & Predictions Protocol for P2P Markets
 
-A decentralized sports betting platform built on the Electroneum blockchain where users can bet on real sports matches, engage in discussions, and earn rewards.
+A decentralized sports betting and predictions platform built on the Electroneum blockchain where users can bet on real sports matches, engage in discussions, and earn rewards.
 
 ## Overview
 
@@ -104,6 +104,64 @@ npm run dev
 - Links comments to specific games
 - Maintains user engagement metrics
 
+## Oracle System
+
+### Overview
+The platform uses a decentralized oracle network to fetch and verify sports match results:
+- Multiple data sources ensure result accuracy
+- Chainlink integration for reliable data feeds
+- Fallback mechanisms for data consistency
+- Automated result verification system
+
+### Oracle Scripts
+Run the oracle system locally:
+```bash
+npm run oracle
+```
+
+## Testing
+
+### Unit Tests
+Run the test suite:
+```bash
+npm run test
+```
+
+The test suite covers:
+- Smart contract functionality
+- Oracle integration
+- Betting mechanics
+- Comment system
+- Edge cases and error handling
+
+### Test Coverage
+Generate test coverage report:
+```bash
+npx hardhat coverage
+```
+
+## Scripts
+
+- `npm run oracle`: Start the oracle system
+- `npm run compile`: Compile smart contracts
+- `npm run test`: Run test suite
+- `npm run deploy`: Deploy contracts
+- `npm run node`: Start local Hardhat node
+
+## Directory Structure
+
+```
+PlayIt/
+├── backend/           # Backend API services
+├── chainlink/         # Chainlink oracle integration
+├── contracts/         # Smart contracts
+├── frontend/         # React frontend application
+├── scripts/          # Deployment and utility scripts
+├── server/           # WebSocket server for real-time updates
+├── test/            # Test files
+└── verification/    # Contract verification scripts
+```
+
 ## Deployment
 
 ### Smart Contracts
@@ -122,6 +180,20 @@ npx hardhat verify --network electroneum <contract-address>
 2. Connect repository to Vercel
 3. Configure environment variables in Vercel dashboard
 4. Deploy!
+
+## Performance Optimization
+
+- Smart contract gas optimization
+- Frontend caching strategies
+- Efficient data fetching patterns
+- Optimized React rendering
+
+## Monitoring and Maintenance
+
+- Real-time contract monitoring
+- Automated error reporting
+- Performance metrics tracking
+- Regular security audits
 
 ## Contributing
 
