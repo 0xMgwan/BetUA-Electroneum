@@ -1,3 +1,4 @@
+https://betua-two.vercel.app/
 # BetUA - Decentralized Betting & Predictions Protocol for P2P Markets
 
 A decentralized sports betting and predictions platform built on the Electroneum blockchain where users can bet on real sports matches, engage in discussions, and earn rewards.
